@@ -2,6 +2,20 @@
 
 A simple go server.
 
+### Instructions to run by docker
+Build the Docker image and run the container using the provided Dockerfile:
+
+```bash
+docker build --build-arg APP_VERSION=1.0 -t <app-name> .
+docker run -it --rm -e PORT=33721 -p 8080:33721 <app-name>
+
+During the builder stage, the image size was 831MB. By utilizing multi-stage building techniques, the final stage image size was reduced to 15.52MB.
+
+Note: Replace `<app-name>` with your desired application name.
+
+
+
+
 ### Instructions to run locally
 
 1. Configure GO in your system.
@@ -28,12 +42,3 @@ A simple go server.
 2. Go to `http://localhost:<given_port>/healthcheck` and check if you see "`{"Status": "OK"}`".
 
 
-Build the Docker image and run the container using the provided Dockerfile:
-
-```bash
-docker build -t <app-name> .
-docker run -d --rm -e PORT=33721 -p 8080:33721 <app-name>
-
-During the builder stage, the image size was 831MB. By utilizing multi-stage building techniques, the final stage image size was reduced to 8.14MB.
-
-Note: Replace `<app-name>` with your desired application name.
